@@ -19,3 +19,12 @@ export async function getMovieDetailes(movieID){
     })
     return response.data
 }
+
+export async function getMovieCredits(movieID){
+    const responce = await axios.get(`https://api.themoviedb.org/3/movie/${movieID}/credits`,{
+        params: {
+            api_key:API_KEY,
+        }
+    })
+    return responce.data.cast
+}
