@@ -28,3 +28,27 @@ export async function getMovieCredits(movieID){
     })
     return responce.data.cast
 }
+
+export async function getMovieReviews(movieID){
+  const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieID}/reviews`,{
+    params: {
+      api_key: API_KEY,
+    }
+  })
+  return response.data.results
+}
+
+
+export async function searchMovies(query) {
+  const response = await axios.get(
+    "https://api.themoviedb.org/3/search/movie",
+    {
+      params: {
+        api_key: API_KEY,
+        query,
+      },
+    }
+  );
+
+  return response.data.results;
+}

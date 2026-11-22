@@ -1,8 +1,12 @@
 import {Route, Routes, NavLink} from 'react-router-dom'
+import { lazy, Suspense } from 'react'
 import './App.css'
-import Home from "./components/pages/Home/Home"
-import Movies from "./components/pages/Movies/Movies"
-import MovieDetails from './components/pages/MovieDetails/MovieDetails'
+
+const Home = lazy(()=>import("./components/pages/Home/Home"))
+
+const Movies= lazy(()=>import("./components/pages/Movies/Movies"))
+
+const MovieDetails = lazy(()=>import("./components/pages/MovieDetails/MovieDetails"))
 import Cast from './components/pages/Cast/Cast'
 import Reviews from './components/pages/Reviews/Reviews'
 function App() {
@@ -14,6 +18,8 @@ function App() {
       <NavLink to="/">Home</NavLink>{" / "}
       <NavLink to="/movies">Movies</NavLink>
     </nav>
+    
+    <Suspense fallback={<p>loading</p>}>
      <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/movies' element={<Movies/>}/>
@@ -22,6 +28,7 @@ function App() {
         <Route path='reviews' element={<Reviews/>}/>
       </Route>
      </Routes>
+     </Suspense>
     </>
   )
 }

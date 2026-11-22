@@ -17,7 +17,7 @@ function MovieDetails() {
   if (!movie) {
     return <p>loading...</p>;
   }
-  console.log(movie);
+ 
 
   return (
     <>
